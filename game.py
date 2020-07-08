@@ -62,14 +62,14 @@ class OXs (object):
 	# Check for a winner
 	def is_there_a_winner(self):
 		# Check lef/right diagonals and middle row/column for a winning line
-		diagonals_and_middles = self.right_diag() or self.left_diag() \
-		or self.middle_row() or self.second_col() \
+		diagonals_and_middles = (self.right_diag() or self.left_diag() \
+		or self.middle_row() or self.second_col()) \
 		and self._board[4] != EMPTY_MARKER
 		# Check top row and first column for a winning line
-		top_and_first = self.top_row() or self.first_col() \
+		top_and_first = (self.top_row() or self.first_col()) \
 		and self._board[0] != EMPTY_MARKER
 		# Check bottom row and last column for a winning line
-		bottom_and_last = self.bottom_row() or self.last_col() \
+		bottom_and_last = (self.bottom_row() or self.last_col()) \
 		and self._board[8] != EMPTY_MARKER
 		# If a winning line was found record the winning character (e.g. X or O)
 		if diagonals_and_middles:
@@ -83,32 +83,32 @@ class OXs (object):
 
 	# Define right diagonal
 	def right_diag(self):
-		return
+		return self._board[0] == self._board[4] == self._board[8]
 
 	# Define left diagonal
 	def left_diag(self):
-		pass
+		return self._board[2] == self._board[4] == self._board[6]
 
 	# Define top row
 	def top_row(self):
-		pass
+		return self._board[0] == self._board[1] == self._board[2]
 
 	# Define middle row
 	def middle_row(self):
-		pass		
+		return self._board[3] == self._board[4] == self._board[5]	
 	
 	# Define bottom row
 	def bottom_row(self):
-		pass
+		return self._board[6] == self._board[7] == self._board[8]
 
 	# Define fist column
 	def first_col(self):
-		pass
+		return self._board[0] == self._board[3] == self._board[6]
 
 	# Define second column
 	def second_col(self):
-		pass
+		return self._board[1] == self._board[4] == self._board[7]
 	
 	# Define last column
 	def last_col(self):
-		pass
+		return self._board[2] == self._board[5] == self._board[8]
