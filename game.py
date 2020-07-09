@@ -112,3 +112,22 @@ class OXs (object):
 	# Define last column
 	def last_col(self):
 		return self._board[2] == self._board[5] == self._board[8]
+
+	# Check if board is full
+	def is_the_board_full(self):
+		for i in range(len(self._board)):
+			if self._board[i] == EMPTY_MARKER:
+				return False
+		return True
+
+	def game_over(self):
+		did_someone_win = self.is_there_a_winner()
+		if did_someone_win:
+			return 'We have a winner! The winner is ' + self._winner \
+			+ 's.'
+		elif self.is_the_board_full():
+			return "Game over. It's a draw!"
+		else:
+			return 'not_over'
+
+

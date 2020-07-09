@@ -3,10 +3,20 @@ from game import OXs
 from utils import clear
 
 def main():
-	game = OXs('X', 'O')
-	clear()
-	game.print_board_template()
-	game.print_board()
+	
+	do_you_want_to_play = True
+	while do_you_want_to_play:
+		clear()
+		# TODO: Intro text
+	
+		print('Choose a character to represent you on the board')
+		# TODO: user input [slice 1st char only]
+		print('Choose a character to represent your opponent')
+		# TODO: user input [slice 1st char only]
+
+		game = OXs('X', 'O')
+		game.print_board_template()
+		game.print_board()
 	
 
 	
