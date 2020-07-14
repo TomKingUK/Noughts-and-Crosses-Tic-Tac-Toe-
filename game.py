@@ -10,7 +10,7 @@ class OXs (object):
 		self._winner = ''
 		self._board = self.set_board()
 		self._current_marker = player_marker
-
+	
 	#	Board design
 	#	1 | 2 | 3
 	#	---------
@@ -33,12 +33,12 @@ class OXs (object):
 		return is_valid # Allows us to check if turn was valid
 
 	# Check if a played turn is within range (1-9)
-	def within_range(self, number):
+	def within_range(self, number) -> bool:
 		return 0 < number <= len(self._board)
 
 	# Check if a position is taken
 	# [char other than placeholder found]
-	def is_occupied(self, pos):
+	def is_occupied(self, pos) -> bool:
 		return self._board[pos-1] != EMPTY_MARKER
 	
 	# Display the current game board
@@ -60,7 +60,7 @@ class OXs (object):
 		print('\n')	
 
 	# Check for a winner
-	def is_there_a_winner(self):
+	def is_there_a_winner(self) -> bool:
 		# Check lef/right diagonals and middle row/column for a winning line
 		diagonals_and_middles = (self.right_diag() or self.left_diag() \
 		or self.middle_row() or self.second_col()) \
@@ -114,7 +114,7 @@ class OXs (object):
 		return self._board[2] == self._board[5] == self._board[8]
 
 	# Check if board is full
-	def is_the_board_full(self):
+	def is_the_board_full(self) -> bool:
 		for i in range(len(self._board)):
 			if self._board[i] == EMPTY_MARKER:
 				return False
