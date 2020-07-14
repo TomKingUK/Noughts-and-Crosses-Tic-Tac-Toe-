@@ -25,12 +25,16 @@ class OXs (object):
 		
 	def play_turn(self, pos) -> bool:
 		is_valid = self.within_range(pos) and not self.is_occupied(pos)
+		print('Valid? ', is_valid)
 		if is_valid:
 			self._board[pos-1] = self._current_marker
 			# Flip the turn from ai to player, or player to ai
-			self._current_marker = self._ai_marker if self._player_marker \
-			else self._player_marker
-		return is_valid # Allows us to check if turn was valid
+			if self._current_marker == self._ai_marker: 				self._current_marker = self._player_marker
+			else:
+				self._current_marker = self._ai_marker
+
+			print('Current marker: ', self._current_marker)
+		return is_valid
 
 	# Check if a played turn is within range (1-9)
 	def within_range(self, number) -> bool:
@@ -40,7 +44,7 @@ class OXs (object):
 	# [char other than placeholder found]
 	def is_occupied(self, pos) -> bool:
 		return self._board[pos-1] != EMPTY_MARKER
-	
+
 	# Display the current game board
 	def print_board(self):
 		print('\n')

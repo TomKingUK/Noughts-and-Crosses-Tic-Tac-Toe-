@@ -27,19 +27,27 @@ def main():
 		# Let's play!
 		while game.game_over() == 'not_over':
 			if game._current_marker == game._player_marker:
-				# Player turn
-				pos = input('Enter a number to take your turn: ')
+				# Begin player turn
+				try:
+					# TODO: Create reusable input function
+					pos = int(input('Enter a number [1-9] to take your turn: '))
+				except:
+					# TODO: Implement proper error handling
+					print('Invalid input. Enter an inter from 1 to 9.')
+					pos = int(input('Enter a number [1-9] to take your turn: '))
+				# Play turn
 				while not game.play_turn(pos):
-					print('Try again' + pos + 'is not a valid position.')
-					pos = input('Enter a number to take your turn: ')
-				print(f'You chose position {pos}.')
+					print(f'Try again {pos} is not a valid position.')
+					pos = int(input('Enter a number [1-9] to take your turn: '))
+					print(f'You chose position {pos}.')
 			else:
-				# AI turn
+				# Begin AI turn
 				print('It\'s my turn')
 				ai_pos = ai_player.pick_a_spot(game)
+				# Play AI turn
 				game.play_turn(ai_pos)
 				print(f'I picked position {ai_pos}')
-
+					
 			# Print board again
 			print('\n')
 			game.print_board()

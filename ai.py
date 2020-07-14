@@ -4,11 +4,12 @@ import random
 
 class ai (object):
 			
-	def pick_a_spot(game):
+	def pick_a_spot(self, game):
 		choices = []
 		for i in range(len(game._board)):
-			if game._board[i] != EMPTY_MARKER:
+			if game._board[i] == EMPTY_MARKER:
 				choices.append(i)
-		
+		print('Choices:', choices)
 		choice = random.randint(min(choices), max(choices))
-		return choice
+		print('Choice: ', choice)
+		return choice + 1
