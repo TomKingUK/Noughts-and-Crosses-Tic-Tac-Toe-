@@ -25,15 +25,12 @@ class OXs (object):
 		
 	def play_turn(self, pos) -> bool:
 		is_valid = self.within_range(pos) and not self.is_occupied(pos)
-		print('Valid? ', is_valid)
 		if is_valid:
 			self._board[pos-1] = self._current_marker
 			# Flip the turn from ai to player, or player to ai
 			if self._current_marker == self._ai_marker: 				self._current_marker = self._player_marker
 			else:
 				self._current_marker = self._ai_marker
-
-			print('Current marker: ', self._current_marker)
 		return is_valid
 
 	# Check if a played turn is within range (1-9)
@@ -127,10 +124,13 @@ class OXs (object):
 	def game_over(self):
 		did_someone_win = self.is_there_a_winner()
 		if did_someone_win:
-			return 'We have a winner! The winner is ' + self._winner \
-			+ 's.'
+			if self._winner == self._player_marker:
+				return 'AI: Congratulations you win!'
+			else:
+				return 'AI: You just lost to a random ' + \
+				'number generator. How are you this bad?'
 		elif self.is_the_board_full():
-			return "Game over. It's a draw!"
+			return 'Game over. It\'s a draw!'
 		else:
 			return 'not_over'
 

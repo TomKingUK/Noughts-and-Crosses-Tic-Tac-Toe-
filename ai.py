@@ -9,7 +9,5 @@ class ai (object):
 		for i in range(len(game._board)):
 			if game._board[i] == EMPTY_MARKER:
 				choices.append(i)
-		print('Choices:', choices)
-		choice = random.randint(min(choices), max(choices))
-		print('Choice: ', choice)
+		choice = choices[random.randint(0, len(choices)-1)]
 		return choice + 1
